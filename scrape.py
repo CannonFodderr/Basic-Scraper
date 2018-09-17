@@ -11,7 +11,7 @@ def main():
     choosen_url = input("Paste in a full url (including http/s): ")
     site_data = request_site(choosen_url)
     print(f"Got status response: {site_data.status_code}")
-    domain_name = name_gen(choosen_url)
+    domain_name = get_domain_name(choosen_url)
     images_list = write_csv(site_data, domain_name)
     print(f"Done scraping, closing {domain_name}.csv file")
     activate_gen = input("Generate images list to HTML? (y/n): ")
@@ -20,7 +20,7 @@ def main():
         print(f"Done, {domain_name}.html was created")
 
 
-def name_gen(url_string):
+def get_domain_name(url_string):
     """Return a website name"""
     domain_name = url_string.split('/')[2]
     return domain_name
