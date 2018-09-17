@@ -4,6 +4,7 @@ from csv import writer, reader
 
 
 def init():
+    """Main init function runs on startup"""
     user_input = input("Paste in a full url (including http/s): ")
     scrape_site(user_input)
     activae_gen = input("Generate CSV to HTML? (y/n): ")
@@ -12,6 +13,7 @@ def init():
 
 
 def scrape_site(url):
+    """Scraper sends a request and parses the data back to a .CSV file"""
     incoming = req.get(url)
     print(f"Got status response: {incoming.status_code}")
     if incoming.status_code == 200:
@@ -29,6 +31,7 @@ def scrape_site(url):
 
 
 def gen_html(url):
+    """Optional function turns the .CSV file into an .HTML file"""
     name = url.split('.')[1]
     with open(f'./csv/{name}.csv', 'r', encoding="utf-8") as csv_file:
         csv_reader = reader(csv_file)
