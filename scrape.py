@@ -50,9 +50,7 @@ def gen_html(url, name):
         items = list(csv_reader)
         with open(f'./html/{name}.html', 'w') as html_file:
             html_file.write("<body>\n")
-            for item in items:
-                if item:
-                    html_file.write(f"<img src={item[1]}>\n")
+            [html_file.write(f"<img src={item[1]}>\n") for item in items if item]
             html_file.write("</body>")
         print(f"Done, {name}.html was created")
 
