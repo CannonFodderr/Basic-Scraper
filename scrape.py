@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from csv import writer, reader
+from urllib.parse import urlparse
 
 STATUS_SUCCESS = 200
 FILES_ENCODING = "utf-8"
@@ -22,7 +23,9 @@ def main():
 
 def get_domain_name(url_string):
     """Return a website name"""
-    domain_name = url_string.split('/')[2]
+    domain_name = urlparse(url_string).netloc
+    print(domain_name)
+    # domain_name = url_string.split('/')[2]
     return domain_name
 
 
